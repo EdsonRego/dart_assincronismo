@@ -1,3 +1,4 @@
+import 'package:dart_assincronismo/api_key.dart';
 import 'package:http/http.dart';
 import 'dart:convert';
 
@@ -43,5 +44,23 @@ sendDataAsync(Map<String, dynamic> mapAccount) async {
   List<dynamic> listAccounts = await requestDataAssync();
   listAccounts.add(mapAccount);
   String content = json.encode(listAccounts);
-  print(content);
+
+  String url =
+      "https://api.github.com/gists/0c4f212c76568e778d4465242d475afa";
+
+  Response response = await post(
+    Uri.parse(url), 
+    headers: {
+    "Authorization" : "Bearer $githubApiKey"}, 
+    body: json.encode({
+      "description" : "account.json",
+      "public" : true,
+      "files" : {
+      "accounts.json" : {
+        "content" : content,
+      }
+    }
+  }),
+  );
+  print(response.statusCode);
 }
