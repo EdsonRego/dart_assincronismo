@@ -1,10 +1,10 @@
 class Account {
-  String id;
-  String name;
-  String lastName;
-  double balance;
+  final String id;
+  final String name;
+  final String lastName;
+  final double balance;
 
-  Account({
+  const Account({
     required this.id,
     required this.name,
     required this.lastName,
@@ -13,19 +13,20 @@ class Account {
 
   factory Account.fromMap(Map<String, dynamic> map) {
     return Account(
-      id: map["id"],
-      name: map["name"],
-      lastName: map["lastName"],
-      balance: map["balance"],
+      id: map['id'] as String,
+      name: map['name'] as String,
+      lastName: map['lastName'] as String,
+      balance: (map['balance'] as num).toDouble(), // ✅ aceita int ou double
     );
   }
 
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      "id": id,
-      "name": name,
-      "lastName": lastName,
-      "balance": balance
-    };
-  }
+  Map<String, dynamic> toMap() => {
+        'id': id,
+        'name': name,
+        'lastName': lastName,
+        'balance': balance,
+      };
+
+  @override
+  String toString() => 'Conta $id | $name $lastName | Saldo: $balance';
 }
