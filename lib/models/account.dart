@@ -25,7 +25,7 @@ class Account {
       "id": id,
       "name": name,
       "lastName": lastName,
-      "balance": balance,
+      "balance": balance
     };
   }
 }

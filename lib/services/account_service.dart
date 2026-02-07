@@ -5,7 +5,7 @@ import 'package:dart_assincronismo/models/account.dart';
 import 'package:http/http.dart';
 import 'dart:convert';
 
-class AccountServce {
+class AccountService {
   StreamController<String> _streamController = StreamController<String>();
   Stream<String> get streamInfos => _streamController.stream;
   String url = "https://api.github.com/gists/0c4f212c76568e778d4465242d475afa";
