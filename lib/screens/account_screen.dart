@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:dart_assincronismo/models/account.dart';
 import 'package:dart_assincronismo/services/account_service.dart';
 
-
 class AccountScreen {
   AccountService _accountService = AccountService();
 
@@ -53,8 +52,13 @@ class AccountScreen {
   }
 
   _getAllAccounts() async {
-    List<Account> listAccounts = await _accountService.getAll();
-    print(listAccounts);
+    try {
+      List<Account> listAccounts = await _accountService.getAll();
+      print(listAccounts);
+    } on Exception {
+      print("Não consegui recuperar os dados da conta!");
+      print("Tente um pouco mais tarde!");
+    }
   }
 
   _addExampleAccout() async {
